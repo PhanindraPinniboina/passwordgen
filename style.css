@@ -1,0 +1,45 @@
+body {
+            font-family: Arial, sans-serif;
+            background-image: url(/back.png);
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .container {
+            background: #000;
+            display: inline-block;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .password-box {
+            background: #6b6a6a;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            display: inline-block;
+            word-break: break-all;
+            min-width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #4206ce;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #149206;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #b3ffb3;
+        }
