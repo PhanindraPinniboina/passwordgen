@@ -1,98 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Password Generator | Strong Random Passwords Online</title>
-    <meta name="description" content="Generate strong, random, and secure passwords instantly. Copy passwords with one click, check strength meter, and protect your online accounts. Free, fast, and secure!">
-    <meta name="keywords" content="secure password generator, random password generator, strong passwords, free password tool, online password creator, strong password checker">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://passwordplus.com.au/">
-    <meta property="og:title" content="Secure Password Generator | Strong Random Passwords Online">
-    <meta property="og:description" content="Create strong and random passwords instantly. Protect your online security with our free password generator.">
-    <meta property="og:image" content="https://passwordplus.com.au/secure-password-generator-banner.png">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://passwordplus.com.au/">
-    <meta name="twitter:title" content="Secure Password Generator | Strong Random Passwords Online">
-    <meta name="twitter:description" content="Generate secure and random passwords instantly. Copy with one click and check password strength. Free online password generator tool!">
-    <meta name="twitter:image" content="https://passwordplus.com.au/secure-password-generator-banner.png">
-
-    <!--Google adsense code-->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9853098735838116"
-     crossorigin="anonymous"></script>
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Secure Password Generator",
-      "url": "https://passwordplus.com.au/",
-      "description": "Generate strong, random passwords instantly. Secure your online accounts with our free password generator tool.",
-      "applicationCategory": "Utility",
-      "operatingSystem": "All",
-      "author": {
-        "@type": "Organization",
-        "name": "Veera Phanindra Pinniboina"
-      }
-    }
-    </script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Veera Pinniboina">
+  <title>Secure Password Generator | Fast, Private, Free</title>
+  <meta name="description" content="Generate secure passwords instantly with a privacy-first password generator. Choose length, include symbols, numbers, and letters. Copy with one click.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0ea5e9">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Secure Password Generator | Fast, Private, Free">
+  <meta property="og:description" content="Create strong, unique passwords in seconds. No storage. No tracking.">
+  <meta property="og:image" content="https://passwordplus.com.au/og-image.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Secure Password Generator | Fast, Private, Free">
+  <meta name="twitter:description" content="Create strong, unique passwords in seconds. No storage. No tracking.">
+  <meta name="twitter:image" content="https://passwordplus.com.au/og-image.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Secure Password Generator</h1>
-        <div id="password" class="password-box"></div><br>
-        <button onclick="generatePassword()">Generate New Password</button>
-        <button onclick="copyPassword()">Copy to Clipboard</button>
-        <div id="copyMessage" class="message"></div>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🔐</div>
+      <div class="brand-text">
+        <h1 class="title">Secure Password Generator</h1>
+        <p class="subtitle">Strong, random, and private — generated in your browser.</p>
+      </div>
     </div>
+  </header>
 
-    <script>
-        function generatePassword() {
-            const length = 20; // Fixed length N = 20
-            const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const lowercase = "abcdefghijklmnopqrstuvwxyz";
-            const digits = "0123456789";
-            const special = "!@#$%^&*()-_=+[]{};:,.<>?/|\\";
-            const allChars = uppercase + lowercase + digits + special;
+  <main class="wrapper" role="main">
+    <section class="card" aria-labelledby="generator-heading">
+      <h2 id="generator-heading" class="sr-only">Password Generator</h2>
+      <p id="msg" class="msg" role="status" aria-live="polite"></p>
 
-            // Ensure at least one of each type
-            let password = [
-                uppercase[Math.floor(Math.random() * uppercase.length)],
-                lowercase[Math.floor(Math.random() * lowercase.length)],
-                digits[Math.floor(Math.random() * digits.length)],
-                special[Math.floor(Math.random() * special.length)]
-            ];
+      <div class="result-row">
+        <input id="result" class="result" type="text" inputmode="text" aria-label="Generated password" readonly />
+        <button class="btn icon" id="copy" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+        <button id="refresh" class="btn icon" aria-label="Generate new password" title="Generate new">⟳</button>
+      </div>
 
-            // Fill remaining characters
-            for (let i = 4; i < length; i++) {
-                password.push(allChars[Math.floor(Math.random() * allChars.length)]);
-            }
+      <div class="controls">
+        <div class="control">
+          <label for="length">Length: <strong><span id="lengthValue">20</span></strong></label>
+          <div class="length-inputs">
+            <input id="length" type="range" min="8" max="20" value="20" aria-valuemin="8" aria-valuemax="20" aria-valuenow="20">
+            <input id="lengthNumber" type="number" min="8" max="20" value="20" aria-label="Password length number input">
+          </div>
+          <small class="hint">Min 8, Max 20</small>
+        </div>
 
-            // Shuffle password
-            password = password.sort(() => Math.random() - 0.5).join("");
-            document.getElementById("password").innerText = password;
+        <div class="control grid">
+          <label class="check"><input type="checkbox" id="lower" checked> <span>Lowercase (a-z)</span></label>
+          <label class="check"><input type="checkbox" id="upper" checked> <span>Uppercase (A-Z)</span></label>
+          <label class="check"><input type="checkbox" id="number" checked> <span>Numbers (0-9)</span></label>
+          <label class="check"><input type="checkbox" id="symbol" checked> <span>Symbols (!@#$…)</span></label>
+        </div>
 
-            // Clear copy message
-            document.getElementById("copyMessage").innerText = "";
-        }
+        <button id="generate" class="btn primary">Generate Password</button>
+        
+      </div>
+    </section>
 
-        function copyPassword() {
-            const passwordText = document.getElementById("password").innerText;
-            navigator.clipboard.writeText(passwordText).then(() => {
-                document.getElementById("copyMessage").innerText = "✅ Password copied to clipboard!";
-            }).catch(err => {
-                document.getElementById("copyMessage").innerText = "❌ Failed to copy password!";
-            });
-        }
+    <section class="info">
+      <h2>Why this generator?</h2>
+      <ul>
+        <li><strong>Private:</strong> all generation happens locally in your browser.</li>
+        <li><strong>Secure:</strong> includes unpredictable symbols, numbers, and letters.</li>
+        <li><strong>Convenient:</strong> copy with one click, customize length 8–20.</li>
+      </ul>
 
-        // Generate password on page load
-        window.onload = generatePassword;
-    </script>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>Use a unique password for every account.</li>
+        <li>Store passwords in a reputable password manager.</li>
+        <li>Enable two‑factor authentication wherever possible.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p><strong>Important Notice:</strong> We never store or transmit your generated passwords. Everything runs in your browser. Please save generated passwords securely.</p>
+    <p>Copyright&copy;2025 Deccan Web Developers | All rights reserved</p>
+  </footer>
+  <script src="/script.js"></script>
 </body>
 </html>
